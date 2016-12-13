@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unasp Chat</title>
+    
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-wrapper blue">
+        <a href="#" class="brand-logo center">Unasp Chat</a>
+      </div>
+    </nav>
+
+    <div class="container">
+       <p class="">
+       <div class="row horizontal-container z-depth-4">
+         <div class="col s4 left-panel left">
+             <div class="numberOnline_container">
+               <p id="numberUsersOnline" class="center">0 users online </p>
+             </div>
+             <div class="usersOnline_container">
+              <ul id="usersOnline">               
+              </ul>
+             </div>
+         </div>
+         <div class="no-padding col s8 right">
+            <p class="center chatHeader orange z-depth-2">Sala de Batepapo</p>
+           <div class="chatBox">
+           </div>
+           <div class="row textbox no-padding no-margin">
+              <div class="col s11 input-field">               
+                <input type="text" id="userInput" placeholder="Sua mensagem">                        
+              </div>
+               <a class="btn waves-effect waves-light col s1 blue" id="sendmsg">
+                <i class="material-icons">send</i>
+              </a>
+           </div>
+         </div>          
+       </div>
+       </p>
+    </div>
+    
+    <div id="modal_login" class="modal">
+      <div class="modal-content">        
+        <h5>Insira seu nome para entrar</h5>
+        <div class="input-field">
+          <input id="name" placeholder="Nome" type="text">
+          <button id="btn_login" class="btn waves-effect waves-light green">Entrar</button>
+        </div>
+      </div>     
+    </div>
+      <!--Import jQuery before materialize.js-->
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+     <script src="ws.js"></script>    
+     <script>
+      $(document).ready(function(){    
+      $('.modal').modal({
+        dismissible: false
+      });
+       $('#modal_login').modal('open');
+      });
+
+     
+
+
+      $('#btn_login').click(function(){
+        login($('#name').val());
+      });
+
+      $('#sendmsg').click(function(){
+        send($('#userInput').val());
+        $("#userInput").prop("disabled", true);
+
+      })
+
+      $('#userInput').keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                   $("#sendmsg").click(); 
+                }               
+                event.stopPropagation();
+            });
+     </script> 
+  </body>
+</html>

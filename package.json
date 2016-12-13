@@ -1,0 +1,17 @@
+{
+  "name": "ws_chat",
+  "version": "1.0.0",
+  "description": "Simple chat using websocket and NodeJs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Rhuan Chaves",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "moment": "^2.17.1",
+    "socket.io": "^1.7.1"
+  }
+}
